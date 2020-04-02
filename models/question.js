@@ -1,4 +1,7 @@
+//include mongoose
 const mongoose = require('mongoose');
+
+//create question schema
 const questionSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -14,5 +17,8 @@ const questionSchema = new mongoose.Schema({
   timestamps: true
 });
 
+//create Question model
 const Question = mongoose.model('Question', questionSchema);
+
+//export Question model
 module.exports = Question;

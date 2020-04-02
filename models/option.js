@@ -1,4 +1,7 @@
+//include mongoose
 const mongoose = require('mongoose');
+
+//create a schema for option
 const optionSchema = new mongoose.Schema({
   text: {
     type: String,
@@ -18,5 +21,8 @@ const optionSchema = new mongoose.Schema({
   timestamps: true
 });
 
+//create Option model
 const Option = mongoose.model('Option', optionSchema);
+
+//export the Model
 module.exports = Option;
