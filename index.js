@@ -1,5 +1,13 @@
+//include express
 const express = require('express');
+
+//server port number
 const port = 8000;
+
+//include database
+const db = require('./config/mongoose');
+
+//create express application
 const app = express();
 
 //middleware to parse form data
