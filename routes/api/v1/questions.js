@@ -8,7 +8,7 @@ const questionController = require('../../../controllers/api/v1/questionsControl
 router.post('/create', questionController.createQuestion);
 router.post('/:id/options/create', questionController.addOptions);
 router.get('/:id', questionController.fetchQuestion);
-router.delete('/:id', questionController.deleteQuestion);
+router.delete('/:id/delete', questionController.deleteQuestion);
 
 //export router
 module.exports = router;

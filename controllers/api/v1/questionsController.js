@@ -43,7 +43,8 @@ module.exports.addOptions = async function(req, res){
     for(let i = 0; i < options.length; i++){
       optionObjArr[i] = await Option.create({
         text: options[i].text,
-        votes: 0
+        votes: 0,
+        question: id
       });
     }
 
@@ -113,21 +114,18 @@ module.exports.deleteQuestion = async function(req, res){
         message: "Question not found"
       });
     }
-    let hasOptions = false;
+
     let options = question.options;
     for(let i = 0; i < options.length; i++){
+      console.log(options[i].votes);
       if(options[i].votes > 0){
-        hasVotes = true;
-        break;    
+        return res.status(404).json({
+          message: "Question cannot be deleted as the option(s) has votes"
+        });
       }
     }
 
-    if(hasOptions){
-      return res.status(404).json({
-        message: "Question cannot be deleted as the option(s) has votes"
-      });
-    }
-
+    await Option.deleteMany({ question: id });
     await Question.findByIdAndDelete(id);
     
     return res.status(200).json({
